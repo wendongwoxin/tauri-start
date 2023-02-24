@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LeftBanner from './components/LeftBanner.vue'
+import TestFile from './components/TestFile.vue'
 </script>
 
 <template>
@@ -8,7 +9,9 @@ import LeftBanner from './components/LeftBanner.vue'
       <LeftBanner />
     </div>
     <div class="flex-none h-full w-16 bg-red-400"></div>
-    <div class="flex-grow h-full bg-[#652]"></div>
+    <div class="flex-grow h-full">
+      <TestFile />
+    </div>
   </div>
 </template>
 

@@ -34,8 +34,9 @@
 </template>
 
 <script lang="ts" setup>
-import MenuBar from './MenuBar.vue'
+import MenuBar from "./MenuBar.vue";
 import { PlusOutlined } from "@ant-design/icons-vue";
+
 </script>
 
 <style scoped lang="less"></style>
