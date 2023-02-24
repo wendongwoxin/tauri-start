@@ -1,8 +1,8 @@
-name: Release
+name: Build application
 on:
   push:
-    branches:
-      - "main"
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-20.04]
+        platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout repository
@@ -19,7 +19,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "lts/*"
+          node-version: 16
 
       - uses: pnpm/action-setup@v2.0.1
         name: Install pnpm
@@ -32,6 +32,7 @@ jobs:
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -39,6 +40,7 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
       - name: Rust setup
         uses: actions-rs/toolchain@v1
         with:
@@ -54,12 +56,11 @@ jobs:
 
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }} # This only works if your workflow triggers on new tags.
-          releaseName: 'App Name v__VERSION__' # tauri-action replaces \_\_VERSION\_\_ with the app version.
-          releaseBody: 'See the assets to download and install this version.'
+          tagName: ${{ github.ref_name }} # tauri-action replaces \_\_VERSION\_\_ with the app version
+          releaseName: "v__VERSION__"
+          releaseBody: "See the assets to download this version and install."
           releaseDraft: true
           prerelease: false
