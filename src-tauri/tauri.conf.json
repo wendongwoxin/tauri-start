@@ -1,7 +1,7 @@
 {
   "build": {
     "beforeDevCommand": "pnpm dev",
-    "beforeBuildCommand": "pnpm build",
+    "beforeBuildCommand": "pnpm build --target=aarch64-unknown-linux-gnu",
     "devPath": "http://localhost:1420",
     "distDir": "../dist",
     "withGlobalTauri": false
