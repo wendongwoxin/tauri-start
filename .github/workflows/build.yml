@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-18.09]
+        platform: [ubuntu-18.01]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout repository
