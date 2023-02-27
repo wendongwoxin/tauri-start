@@ -13,16 +13,7 @@ jobs:
         platform: [ubuntu-18.04]
     runs-on: ${{ matrix.platform }}
     steps:
-      - name: Run on architecture
-          # You may pin to the exact commit or the version.
-          # uses: uraimo/run-on-arch-action@a8003307a739516fdd80ee6d3da8924db811b8da
-        uses: uraimo/run-on-arch-action@v2.5.0
-        with:
-          # CPU architecture: armv6, armv7, aarch64, riscv64, s390x, ppc64le.
-          arch: aarch64
-          # Linux distribution name: ubuntu16.04, ubuntu18.04, ubuntu20.04, bullseye, buster, stretch, jessie, fedora_latest, alpine_latest, archarm_latest.
-          distro: ubuntu18.04
-        
+      
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -64,6 +55,16 @@ jobs:
       - name: Install app dependencies and build web
         run: npm install && npm run build --target=i686-unknown-linux-gnu
 
+      - name: Run on architecture
+          # You may pin to the exact commit or the version.
+          # uses: uraimo/run-on-arch-action@a8003307a739516fdd80ee6d3da8924db811b8da
+        uses: uraimo/run-on-arch-action@v2.5.0
+        with:
+          # CPU architecture: armv6, armv7, aarch64, riscv64, s390x, ppc64le.
+          arch: aarch64
+          # Linux distribution name: ubuntu16.04, ubuntu18.04, ubuntu20.04, bullseye, buster, stretch, jessie, fedora_latest, alpine_latest, archarm_latest.
+          distro: ubuntu18.04
+          
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
         env:
