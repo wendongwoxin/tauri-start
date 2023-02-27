@@ -11,7 +11,6 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
     ADivider: typeof import('ant-design-vue/es')['Divider']
-    ATag: typeof import('ant-design-vue/es')['Tag']
     Greet: typeof import('./src/components/Greet.vue')['default']
     LeftBanner: typeof import('./src/components/LeftBanner.vue')['default']
     MenuBar: typeof import('./src/components/MenuBar.vue')['default']
